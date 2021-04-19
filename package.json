@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "shite",
   "main": "index.js",
+  "scripts": {
+    "start": "node ."
+  },
   "author": "matt lol",
   "license": "MIT",
   "private": true,
