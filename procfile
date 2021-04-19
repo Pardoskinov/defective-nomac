@@ -1,1 +1,1 @@
-serve-images: npm start
+run-bot: npm start
