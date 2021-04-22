@@ -34,24 +34,49 @@ client.on("message", async (msg) => {
       }
     }
 
-    if (!msg.member.voice.channel) {
-      return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
-    }
-    switch (args[0]) {
-      case ("pain"):
-        await joinVc(msg.member);
-        break
-      case ("astonish"):
-        await joinVc2(msg.member);
-        break
-      case "paingone": {
-        await leaveVc(msg.member);
-        break
+    if (msg.content.startsWith(prefix)) {
+      const args = msg.content.substring(1).split(" ");
+      const user = msg.guild.member(msg.author);
+
+      switch (args[0]) {
+        case ("curse"): {
+          if (msg.mentions.users.size > 0) {
+            return msg.channel.send(`${msg.mentions.users.first()} is now cursed!`);
+          }
+        }
       }
+    };
+    
+    if (msg.content.startsWith(prefix)) {
+      if (!msg.member.voice.channel) {
+        return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
+      }
+      switch (args[0]) {
+        case ("pain"):
+          await joinVc(msg.member);
+          break
+        case "paingone": {
+          await leaveVc(msg.member);
+          break
+        }
+      }
+      return msg.reply("time for best song of all time :astonished:")
     }
-    return msg.reply("time for best song of all time :astonished:")
   }
 });
+
+if (msg.content.startsWith(prefix)) {
+  if (!msg.member.voice.channel) {
+    return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
+  }
+  switch (args[0]) {
+    case ("astonish"): {
+      await joinVc2(msg.member);
+      break;
+    }
+  };
+  return msg.reply("time for best album of all time :astonished:")
+}
 
 const sunglasses = (msg, isSelf) => {
   // load the file that has the sunglasses content
