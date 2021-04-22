@@ -46,7 +46,7 @@ client.on("message", async (msg) => {
         }
       }
     };
-    
+
     if (msg.content.startsWith(prefix)) {
       if (!msg.member.voice.channel) {
         return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
@@ -65,17 +65,19 @@ client.on("message", async (msg) => {
   }
 });
 
-if (msg.content.startsWith(prefix)) {
-  if (!msg.member.voice.channel) {
-    return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
-  }
-  switch (args[0]) {
-    case ("astonish"): {
-      await joinVc2(msg.member);
-      break;
+async function start() {
+  if (msg.content.startsWith(prefix)) {
+    if (!msg.member.voice.channel) {
+      return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
     }
-  };
-  return msg.reply("time for best album of all time :astonished:")
+    switch (args[0]) {
+      case ("astonish"): {
+        await joinVc2(msg.member);
+        break;
+      }
+    };
+    return msg.reply("time for best album of all time :astonished:")
+  }
 }
 
 const sunglasses = (msg, isSelf) => {
