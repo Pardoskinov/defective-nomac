@@ -15,6 +15,7 @@ client.on("ready", () => {
   client.user.setActivity("your mother");
 });
 
+console.log('msg')
 client.on("message", async (msg) => {
   if (msg.content.startsWith(prefix)) {
     const args = msg.content.substring(1).split(" ");
@@ -48,7 +49,7 @@ client.on("message", async (msg) => {
     }
 
     if (!msg.member.voice.channel) {
-      return msg.channel.send(`<@${msg.member.id}> you must be in a voice channel first!`);
+      return msg.channel.send(`<@${msg.member.id}> you fucking retard you have to be in a voice channel first. if you dont want to then you can fuck off by jumping into a fucking volcano :sunglasses:`);
     }
     switch (args[0]) {
       case ("pain"):
@@ -62,7 +63,6 @@ client.on("message", async (msg) => {
         break
       }
     }
-    return msg.reply("time for best song of all time :astonished:")
   }
 });
 
@@ -102,22 +102,24 @@ const sunglasses = (msg, isSelf) => {
   // then save then reply
   fs.writeFileSync(path.join(__dirname, "users.json"), JSON.stringify(users));
 
-  msg.reply(`You have been 😎'd ${count} times!`);
+  msg.channel.send(`<@${msg.member.id}> You have been 😎'd ${count} times!`);
 };
 
 //blasts matts "favorite" song in a vc 😎
 const joinVc = async (member) => {
   const connection = await member.voice.channel.join()
   console.log("joining");
+ 
   // const broadcast = client.voice.createBroadcast();
   console.log("playing")
   const dispatcher = await connection.play(ytdl('https://www.youtube.com/watch?v=T1lnO2dF9rM', {
     filter: 'audioonly'
   }));
+  await msg.channel.send(`haha matt loves this song so much :sunglasses:`)
   dispatcher.on("error", (error) => {
     console.log(error)
   })
-}
+};
 
 //blasts the entire astonishing in a vc
 const joinVc2 = async (member) => {
@@ -128,15 +130,18 @@ const joinVc2 = async (member) => {
   const dispatcher = await connection.play(ytdl('https://www.youtube.com/watch?v=bGMTuVjPqZE', {
     filter: 'audioonly'
   }));
+  await msg.channel.send(`literally the best DT album :astonished: :hot_face:`)
   dispatcher.on("error", (error) => {
     console.log(error)
   })
-}
+};
 
 //no more bot
 const leaveVc = async (member) => {
   const connection = await member.voice.channel.leave()
   console.log("leavingVc")
-}
+  await msg.channel.send(`i thought you liked dream theater... oh well... bye i guess... :cry:`)
+};
+
 
 client.login(process.env.TOKEN);
